@@ -43,6 +43,10 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                   Expanded(
                     child: TextField(
                       keyboardType: TextInputType.number,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                      ),
                       decoration: InputDecoration(
                         label: Text(
                           "DAY",
@@ -58,6 +62,10 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                   SizedBox(width: 10),
                   Expanded(
                     child: TextField(
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                      ),
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         label: Text(
@@ -74,6 +82,10 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                   SizedBox(width: 10),
                   Expanded(
                     child: TextField(
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                      ),
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         label: Text(
