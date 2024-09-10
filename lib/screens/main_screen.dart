@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
   const MainScreen({super.key});
@@ -33,10 +34,10 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               ),
             ],
           ),
-          child: const Column(
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
+              const Row(
                 children: [
                   Expanded(
                     child: TextField(
@@ -68,11 +69,35 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                     ),
                   ),
                 ],
-              )
+              ),
+              const SizedBox(height: 30),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  const Divider(
+                    thickness: 2,
+                    color: Colors.black12,
+                  ),
+                  InkWell(
+                    onTap: onTapArrow,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.deepPurple,
+                        shape: BoxShape.circle,
+                      ),
+                      padding: const EdgeInsets.all(20),
+                      child: SvgPicture.asset("assets/images/Arrow.svg"),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 30),
             ],
           ),
         ),
       ),
     );
   }
+
+  void onTapArrow() {}
 }
