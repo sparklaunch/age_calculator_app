@@ -36,6 +36,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Row(
                 children: [
@@ -43,7 +44,13 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                     child: TextField(
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        label: Text("DAY"),
+                        label: Text(
+                          "DAY",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 3,
+                          ),
+                        ),
                         hintText: "DAY",
                       ),
                     ),
@@ -53,7 +60,13 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                     child: TextField(
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        label: Text("MONTH"),
+                        label: Text(
+                          "MONTH",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 3,
+                          ),
+                        ),
                         hintText: "MONTH",
                       ),
                     ),
@@ -63,7 +76,13 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                     child: TextField(
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        label: Text("YEAR"),
+                        label: Text(
+                          "YEAR",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 3,
+                          ),
+                        ),
                         hintText: "YEAR",
                       ),
                     ),
@@ -92,6 +111,81 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                 ],
               ),
               const SizedBox(height: 30),
+              RichText(
+                text: const TextSpan(
+                  style: TextStyle(
+                    fontSize: 64,
+                    fontStyle: FontStyle.italic,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.bold,
+                    height: 1,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "38",
+                      style: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                    TextSpan(
+                      text: " years",
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              RichText(
+                text: const TextSpan(
+                  style: TextStyle(
+                    fontSize: 64,
+                    fontStyle: FontStyle.italic,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.bold,
+                    height: 1,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "3",
+                      style: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                    TextSpan(
+                      text: " months",
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              RichText(
+                text: const TextSpan(
+                  style: TextStyle(
+                    fontSize: 64,
+                    fontStyle: FontStyle.italic,
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.bold,
+                    height: 1,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "26",
+                      style: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                    TextSpan(
+                      text: " days",
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
