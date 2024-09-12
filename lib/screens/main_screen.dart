@@ -1,3 +1,4 @@
+import 'package:age_calculator_app/providers/day_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,8 +10,12 @@ class MainScreen extends ConsumerStatefulWidget {
 }
 
 class _MainScreenState extends ConsumerState<MainScreen> {
+  final dayTextEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final currentDayString =
+        ref.watch(dayProvider).replaceAll(RegExp("[A-Za-z]"), "");
+    dayTextEditingController.text = currentDayString;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -38,16 +43,20 @@ class _MainScreenState extends ConsumerState<MainScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Row(
+              Row(
                 children: [
                   Expanded(
                     child: TextField(
+                      controller: dayTextEditingController,
+                      onChanged: (value) {
+                        ref.read(dayProvider.notifier).setValue(value);
+                      },
                       keyboardType: TextInputType.number,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
                       ),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         label: Text(
                           "DAY",
                           style: TextStyle(
@@ -59,8 +68,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
-                  Expanded(
+                  const SizedBox(width: 10),
+                  const Expanded(
                     child: TextField(
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -79,8 +88,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
-                  Expanded(
+                  const SizedBox(width: 10),
+                  const Expanded(
                     child: TextField(
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -203,6 +212,12 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    dayTextEditingController.dispose();
+    super.dispose();
   }
 
   void onTapArrow() {}
