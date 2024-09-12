@@ -1,5 +1,6 @@
 import 'package:age_calculator_app/providers/day_provider.dart';
 import 'package:age_calculator_app/providers/month_provider.dart';
+import 'package:age_calculator_app/providers/year_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,6 +14,7 @@ class MainScreen extends ConsumerStatefulWidget {
 class _MainScreenState extends ConsumerState<MainScreen> {
   final dayTextEditingController = TextEditingController();
   final monthTextEditingController = TextEditingController();
+  final yearTextEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final currentDayString =
@@ -21,6 +23,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     final currentMonthString =
         ref.watch(monthProvider).replaceAll(RegExp(r"[^0-9]"), "");
     monthTextEditingController.text = currentMonthString;
+    final currentYearString =
+        ref.watch(yearProvider).replaceAll(RegExp(r"[^0-9]"), "");
+    yearTextEditingController.text = currentYearString;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -98,14 +103,18 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  const Expanded(
+                  Expanded(
                     child: TextField(
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
                       ),
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
+                      controller: yearTextEditingController,
+                      onChanged: (value) {
+                        ref.read(yearProvider.notifier).setValue(value);
+                      },
+                      decoration: const InputDecoration(
                         label: Text(
                           "YEAR",
                           style: TextStyle(
@@ -227,6 +236,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   void dispose() {
     dayTextEditingController.dispose();
     monthTextEditingController.dispose();
+    yearTextEditingController.dispose();
     super.dispose();
   }
 
