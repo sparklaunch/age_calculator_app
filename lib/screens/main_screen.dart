@@ -172,6 +172,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                       text: " years",
                       style: TextStyle(
                         color: Colors.black,
+                        letterSpacing: -3,
                       ),
                     ),
                   ],
@@ -197,6 +198,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                       text: " months",
                       style: TextStyle(
                         color: Colors.black,
+                        letterSpacing: -3,
                       ),
                     ),
                   ],
@@ -222,6 +224,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                       text: " days",
                       style: TextStyle(
                         color: Colors.black,
+                        letterSpacing: -3,
                       ),
                     ),
                   ],
