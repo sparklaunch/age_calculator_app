@@ -1,4 +1,5 @@
 import 'package:age_calculator_app/providers/day_provider.dart';
+import 'package:age_calculator_app/providers/month_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,11 +12,15 @@ class MainScreen extends ConsumerStatefulWidget {
 
 class _MainScreenState extends ConsumerState<MainScreen> {
   final dayTextEditingController = TextEditingController();
+  final monthTextEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final currentDayString =
-        ref.watch(dayProvider).replaceAll(RegExp("[A-Za-z]"), "");
+        ref.watch(dayProvider).replaceAll(RegExp(r"[^0-9]"), "");
     dayTextEditingController.text = currentDayString;
+    final currentMonthString =
+        ref.watch(monthProvider).replaceAll(RegExp(r"[^0-9]"), "");
+    monthTextEditingController.text = currentMonthString;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -69,14 +74,18 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  const Expanded(
+                  Expanded(
                     child: TextField(
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
                       ),
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
+                      onChanged: (value) {
+                        ref.read(monthProvider.notifier).setValue(value);
+                      },
+                      controller: monthTextEditingController,
+                      decoration: const InputDecoration(
                         label: Text(
                           "MONTH",
                           style: TextStyle(
@@ -217,6 +226,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   @override
   void dispose() {
     dayTextEditingController.dispose();
+    monthTextEditingController.dispose();
     super.dispose();
   }
 
