@@ -1,3 +1,4 @@
+import 'package:age_calculator_app/providers/date_provider.dart';
 import 'package:age_calculator_app/providers/day_provider.dart';
 import 'package:age_calculator_app/providers/month_provider.dart';
 import 'package:age_calculator_app/providers/year_provider.dart';
@@ -26,6 +27,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     final currentYearString =
         ref.watch(yearProvider).replaceAll(RegExp(r"[^0-9]"), "");
     yearTextEditingController.text = currentYearString;
+    final duration = ref.watch(dateProvider);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -151,8 +153,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               ),
               const SizedBox(height: 30),
               RichText(
-                text: const TextSpan(
-                  style: TextStyle(
+                text: TextSpan(
+                  style: const TextStyle(
                     fontSize: 64,
                     fontStyle: FontStyle.italic,
                     fontFamily: "Poppins",
@@ -161,12 +163,12 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                   ),
                   children: [
                     TextSpan(
-                      text: "38",
-                      style: TextStyle(
+                      text: duration.$1.toString(),
+                      style: const TextStyle(
                         color: Colors.deepPurple,
                       ),
                     ),
-                    TextSpan(
+                    const TextSpan(
                       text: " years",
                       style: TextStyle(
                         color: Colors.black,
@@ -176,8 +178,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                 ),
               ),
               RichText(
-                text: const TextSpan(
-                  style: TextStyle(
+                text: TextSpan(
+                  style: const TextStyle(
                     fontSize: 64,
                     fontStyle: FontStyle.italic,
                     fontFamily: "Poppins",
@@ -186,12 +188,12 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                   ),
                   children: [
                     TextSpan(
-                      text: "3",
-                      style: TextStyle(
+                      text: duration.$2.toString(),
+                      style: const TextStyle(
                         color: Colors.deepPurple,
                       ),
                     ),
-                    TextSpan(
+                    const TextSpan(
                       text: " months",
                       style: TextStyle(
                         color: Colors.black,
@@ -201,8 +203,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                 ),
               ),
               RichText(
-                text: const TextSpan(
-                  style: TextStyle(
+                text: TextSpan(
+                  style: const TextStyle(
                     fontSize: 64,
                     fontStyle: FontStyle.italic,
                     fontFamily: "Poppins",
@@ -211,12 +213,12 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                   ),
                   children: [
                     TextSpan(
-                      text: "26",
-                      style: TextStyle(
+                      text: duration.$3.toString(),
+                      style: const TextStyle(
                         color: Colors.deepPurple,
                       ),
                     ),
-                    TextSpan(
+                    const TextSpan(
                       text: " days",
                       style: TextStyle(
                         color: Colors.black,
